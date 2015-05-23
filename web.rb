@@ -33,3 +33,12 @@ post '/charge' do
   return "Order successfully created"
 
 end
+
+post '/accounts' do
+  Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
+  Stripe::Account.create(
+    {
+      :country => "US",
+      :managed => true
+    }
+  )
